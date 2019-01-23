@@ -12,24 +12,15 @@ void operatorControl() {
     right_speed = joystickGetAnalog(1, 2); // vertical axis on right joystick
     left_speed = joystickGetAnalog(1, 3);  // vertical axis on left joystick
 
-    int lift_speed = 50;
+    int lift_speed = 75;
 		if(joystickGetDigital(1,6, JOY_UP)) {
             motorSet(LEFT_M_ARM, lift_speed);
-            motorSet(RIGHT_M_ARM, lift_speed);
+            motorSet(RIGHT_M_ARM, -lift_speed);
             printf("in 6 JOY_UP \n");
     }
     else if(joystickGetDigital(1,6, JOY_DOWN)) {
             motorSet(LEFT_M_ARM, -lift_speed);
-            motorSet(RIGHT_M_ARM, -lift_speed);
-    }
-    else if(joystickGetDigital(1,8, JOY_UP)) {
-            motorSet(LEFT_M_ARM, -lift_speed/2);
-            motorSet(RIGHT_M_ARM, -lift_speed/2);
-    }
-    else if(joystickGetDigital(1,8, JOY_DOWN)) {
-        printf("The button group 1-8 pressed\n");
-            motorSet(LEFT_M_ARM, -lift_speed/8);
-            motorSet(RIGHT_M_ARM, -lift_speed/8);
+            motorSet(RIGHT_M_ARM, lift_speed);
     }
     else {
             motorSet(LEFT_M_ARM, 0);
@@ -43,6 +34,6 @@ void operatorControl() {
     motorSet(LEFT_M_BACK, left_speed);     // set left motor speed
     motorSet(RIGHT_M_FRONT, -right_speed); // set right motor speed
     motorSet(RIGHT_M_BACK, -right_speed);
-    delay(20); // give cortex time to set the motors speed            TEST 003
+    delay(20); // give cortex time to set the motors speed
   }
 }
